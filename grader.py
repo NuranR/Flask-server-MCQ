@@ -1,6 +1,7 @@
 import cv2 as cv
 import numpy as np
 import openpyxl
+from output import Output
 
 import utils
 
@@ -163,9 +164,13 @@ def grade(image_path):
                 grading.append(1)
             else:
                 grading.append(0)
-        score = (sum(grading) / questions) * 100  # final score
+        score = round((sum(grading) / questions) * 100,2)  # final score
         print("SCORE",round(score))
-    return score
+        output = Output(myIndex, ans, score)
+        print(output.studentAns)
+        print(output.markingAns)
+        print(output.score)
+    return output
 
     # cv.imshow("allconts",imgContours)
     # cv.waitKey(0)

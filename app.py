@@ -12,7 +12,8 @@ def grade():
     imagefile = request.files['imagefile']
     image_path = "./images/" + imagefile.filename
     imagefile.save(image_path)
-    score = grader.grade(image_path)
+    output = grader.grade(image_path)
+    score = output.score
 
     return render_template('index.html',score=score)
 
